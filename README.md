@@ -26,6 +26,12 @@ Specifically, this wizard:
 - If mutt-wizard doesn't know your server's IMAP/SMTP info by default, it will
   prompt you for them and will put them in all the right places.
 
+## Note
+
+Modified to deal with gmail emails more defaultly. Also includes scripts which
+will convert your emails (in markdown) to html so that you gain the benefit of
+formating!
+
 ## Install
 
 #### Dependencies
@@ -36,6 +42,7 @@ Specifically, this wizard:
 - `msmtp` - sends the email.
 - `pass` - safely encrypts passwords (required at install).
 - `ca-certificates` - required for SSL. Probably installed already.
+- Python `markdown` library (for markdown -> html conversion)
 
 **Note**: There's a chance of errors if you use a slow-release distro like
 Ubuntu, Debian, or Mint. If you get errors in `neomutt`, install the most

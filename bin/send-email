@@ -1,0 +1,2 @@
+#!/bin/zsh
+~/.local/bin/scripts/add-html-to-email.py | msmtp $@

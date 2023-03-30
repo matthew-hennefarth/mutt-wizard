@@ -2,7 +2,7 @@
 # muttrc file for account $fulladdr
 set realname = "$realname"
 set from = "$fulladdr"
-set sendmail = "msmtp -a $fulladdr"
+set sendmail = "send-email -a $fulladdr"
 alias me $realname <$fulladdr>
 set folder = "$folder"
 set header_cache = "$cachedir/$safename/headers"
@@ -11,8 +11,8 @@ set mbox_type = Maildir
 set hostname = "$hostname"
 source $muttshare/switch.muttrc
 set spoolfile = "+INBOX"
-set postponed = "+Drafts"
-set trash = "+Trash"
-set record = "+Sent"
+set postponed = "+[Gmail]/Drafts"
+set trash = "+[Gmail]/Trash"
+set record = ""
 $extra
 macro index o "<shell-escape>mailsync $fulladdr<enter>" "sync $fulladdr"
