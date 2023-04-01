@@ -58,7 +58,7 @@ getaccounts() { accounts="$(find -L "$accdir" -type f 2>/dev/null | grep -o "\S*
 
 list() { getaccounts && [ -n "$accounts" ] && echo "$accounts" || exit 1 ;}
 
-prepmsmtp() { mkdir -p "${msmtprc%/*}" "${msmtplog%/*}" ; ln -s "$msmtprc" "$HOME/.msmtprc" 2>/dev/null ; envsubst < "$msmtptemp"  >> "$msmtprc" ;}
+prepmsmtp() { mkdir -p "${msmtprc%/*}" "${msmtplog%/*}" ; envsubst < "$msmtptemp"  >> "$msmtprc" ;}
 
 prepmbsync() { mkdir -p "${mbsyncrc%/*}" ; [ -f "$mbsyncrc" ] && echo >> "$mbsyncrc" ; envsubst < "$mbsynctemp" >> "$mbsyncrc" ;}
 
@@ -202,7 +202,6 @@ finalize() { echo "$toappend" >> "$accdir/$fulladdr.muttrc"
 	[ "$type" != "online" ] && echo "$mailboxes" | xargs -I {} mkdir -p "$maildir/$fulladdr/{}/cur" "$maildir/$fulladdr/{}/tmp" "$maildir/$fulladdr/{}/new"
 	mkdir -p "$cachedir/$safename/bodies"
 	echo "$fulladdr (account #$idnum) added successfully."
-	command -V urlview >/dev/null 2>&1 && [ ! -f "$HOME/.urlview" ] && echo "COMMAND \$BROWSER" > "$HOME/.urlview"
 	return 0 ;}
 
 prepnotmuch() { \
