@@ -11,7 +11,13 @@ htmlFile="/tmp/neomutt.html"
 cat - > "${markdownFile}.orig"
 echo -n "push " > "$commandsFile"
 
+# fixes the > >>> to >>>> if necessary
+sed -i.bak 's/^> >/>>/g' ${markdownFile}.orig && rm ${markdownFile}.orig.bak
+
 cp "${markdownFile}.orig" "$markdownFile" 
+
+# adds <br> before each >...
+sed -i.bak 's/^>/<br>>/g' $markdownFile && rm ${markdownFile}.bak
 
 grep -Eo '!\[[^]]*\]\([^)]+' "$markdownFile" | cut -d '(' -f 2 |
 	grep -Ev '^(cid:|https?://)' | while read file; do
